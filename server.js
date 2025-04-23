@@ -34,7 +34,6 @@ app.get('/bonds', async (req, res) => {
 
 app.get('/coupons/:id', async (req, res) => {
     const bondsId = req.params.id;
-    console.log(bondsId);
     try{
         const response = await axios.post('https://invest-public-api.tinkoff.ru/rest/tinkoff.public.invest.api.contract.v1.InstrumentsService/GetBondCoupons', {
             from: "2024-01-01T10:46:37.073Z",
@@ -47,6 +46,7 @@ app.get('/coupons/:id', async (req, res) => {
             }
         });
         return res.json(response.data.events[0].payOneBond.units);
+
     }catch(err){
         console.log('Ошибка в запросе получения купонов' + err)
     }
